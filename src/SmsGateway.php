@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Log;
 
 class SmsGateway extends Client
 {
+    private $device;
+    
+    private $token;
+
     function __construct()
     {
         parent::__construct(['base_uri' => 'https://smsgateway.me/api/v4/']);
