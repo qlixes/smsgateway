@@ -16,6 +16,7 @@ class SmsGateway extends Client
         parent::__construct(['base_uri' => 'https://smsgateway.me/api/v4/']);
 
         $this->token = config('smsgateway.token');
+        $this->device = config('smsgateway.device');
 
         $this->headers['Accept'] = 'application/json';
         $this->headers['Authorization'] = $this->token;
@@ -40,11 +41,11 @@ class SmsGateway extends Client
         return [
             'code' => $response->getStatusCode(),
             'message' => $response->getReasonPhrase(),
-            'data' => $response->getBody()
+            'data' => json_decode($response->getBody()->getContents())
         ];
     }
 
-    function sms(array $destination, string $text): ?array
+    function sms(array $destinations, string $text): ?array
     {
         $messages = [];
         foreach ($destinations as $destination) {
@@ -63,7 +64,7 @@ class SmsGateway extends Client
         return [
             'code' => $response->getStatusCode(),
             'message' => $response->getReasonPhrase(),
-            'data' => $response->getBody()
+            'data' => json_decode($response->getBody()->getContents())
         ];
     }
 }
