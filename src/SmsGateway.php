@@ -24,7 +24,7 @@ class SmsGateway extends Client
         return $this;
     }
 
-    function device(int $id): ?array
+    function device(int $id = null): ?array
     {
         $id = $id ?? $this->device;
 
