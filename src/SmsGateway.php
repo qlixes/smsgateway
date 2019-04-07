@@ -5,7 +5,7 @@ namespace qlixes\SmsGateway;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
-class SnsGateway extends Client
+class SmsGateway extends Client
 {
     function __construct()
     {
@@ -40,7 +40,7 @@ class SnsGateway extends Client
         ];
     }
 
-    function send(array $destination, string $text): ?array
+    function sms(array $destination, string $text): ?array
     {
         $messages = [];
         foreach ($destinations as $destination) {
