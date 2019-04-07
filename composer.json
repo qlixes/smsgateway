@@ -1,5 +1,5 @@
 {
-    "name": "limatheus/smsgateway",
+    "name": "qlixes/smsgateway",
     "description": "A Laravel bridge to http://smsgateway.me",
     "license": "MIT",
     "authors": [
