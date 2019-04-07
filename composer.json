@@ -2,16 +2,17 @@
     "name": "qlixes/smsgateway",
     "description": "A Laravel bridge to http://smsgateway.me",
     "license": "MIT",
+    "type":"library",
     "authors": [
         {
-            "name": "Matheus Lima",
-            "email": "contato@matheuslima.com.br"
+            "name": "Antony",
+            "email": "qlixess@gmail.com"
         }
     ],
     "autoload": {
 
         "psr-4": {
-            "Limatheus\\SmsGateway\\": "src"
+            "qlixes\\SmsGateway\\": "src"
         }
     },
     "require": {
