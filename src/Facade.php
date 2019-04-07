@@ -1,5 +1,5 @@
 <?php
-namespace Limatheus\SmsGateway;
+namespace qlixes\SmsGateway;
 
 use Illuminate\Support\Facades\Facade as BaseFacace;
 

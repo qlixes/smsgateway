@@ -10,6 +10,6 @@
 */
 
 return [
-    'email' => 'demo@smsgateway.me',
-    'password' => 'your.password'
+    'token' => 'your.token',
+    'device' => 'your.device'
 ];
