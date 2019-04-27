@@ -13,7 +13,7 @@ class SmsGateway extends Client
 
     function __construct()
     {
-        parent::__construct(['base_uri' => 'https://smsgateway.me/api/v4/']);
+        parent::__construct(['base_uri' => config('smsgateway.uri')]);
 
         $this->token = config('smsgateway.token');
         $this->device = config('smsgateway.device');
