@@ -18,7 +18,7 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('smsgateway', function(){
+        $this->app->singleton('smsgateway', function($app){
 
             return new SmsGateway();
         });
