@@ -2,8 +2,9 @@
 
 namespace qlixes\SmsGateway;
 
-
 use Illuminate\Support\ServiceProvider;
+use qlixes\SmsGateway\Vendors\SmsGatewayMe;
+use qlixes\SmsGateway\Vendors\SmsGatewaySemy;
 
 class SmsGatewayServiceProvider extends ServiceProvider
 {
@@ -14,9 +15,7 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $config = config('smsgateway.vendor');
-
-        $vendor = "qlixes\\SmsGateway\\Vendors\\{$config}";
+        $vendor = config('smsgateway.vendor');
 
         $this->app->singleton($vendor, function($app){
 
