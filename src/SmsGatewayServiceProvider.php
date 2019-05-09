@@ -13,18 +13,18 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $className = studly_case(strtolower(config('smsgateway.vendor')));
+        $className = config('smsgateway.vendor');
 
         $classPath = '\qlixes\SmsGateway\Vendors\\'.$className;
 
         if (!class_exists($classPath)) {
             abort(500, sprintf(
-                'SMS vendor %s is not available.',
+                'vendor %s is not available.',
                 $className
             ));
         }
 
-        $this->app->singleton($classPath, function($app) use($classPath){
+        $this->app->singleton(strtolower($classPath), function($app) use($classPath){
             return new $classPath();
         });
     }
