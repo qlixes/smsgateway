@@ -15,9 +15,11 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $vendor = config('smsgateway.vendor');
+        $config = config('smsgateway.vendor');
 
-        $this->app->singleton($vendor, function($app){
+        $vendor = "qlixes\\SmsGateway\\Vendors\\{$config}";
+
+        $this->app->singleton($vendor, function($app) use($vendor){
 
             return new $vendor();
         });

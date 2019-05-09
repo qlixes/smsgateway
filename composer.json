@@ -1,6 +1,6 @@
 {
     "name": "qlixes/smsgateway",
-    "description": "A Laravel bridge to http://smsgateway.me",
+    "description": "A Laravel bridge to http://smsgateway.me and http://semysms.net",
     "license": "MIT",
     "type":"library",
     "authors": [

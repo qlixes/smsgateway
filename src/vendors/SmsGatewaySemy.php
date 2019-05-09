@@ -1,6 +1,6 @@
 <?php
 
-namespace qlixes\Vendors\SmsGateway;
+namespace qlixes\SmsGateway\Vendors;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
