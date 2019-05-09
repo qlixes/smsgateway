@@ -7,6 +7,7 @@ class Facade extends BaseFacace
 {
     protected static function getFacadeAccessor()
     {
-        return 'smsgateway';
+        $vendor = config('smsgateway.vendor');
+        return strtolower($vendor);
     }
 }

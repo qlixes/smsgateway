@@ -3,6 +3,8 @@
 namespace qlixes\SmsGateway;
 
 use Illuminate\Support\ServiceProvider;
+use qlixes\SmsGateway\Vendors\SmsGatewayMe;
+use qlixes\SmsGateway\Vendors\SmsGatewaySemy;
 
 class SmsGatewayServiceProvider extends ServiceProvider
 {
@@ -13,19 +15,11 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $className = config('smsgateway.vendor');
+        // $vendor = "qlixes\SmsGateway\Vendors\\";
+        $vendor = Object config('smsgateway.vendor');
 
-        $classPath = '\qlixes\SmsGateway\Vendors\\'.$className;
-
-        if (!class_exists($classPath)) {
-            abort(500, sprintf(
-                'vendor %s is not available.',
-                $className
-            ));
-        }
-
-        $this->app->singleton($className, function($app) use($classPath){
-            return new $classPath();
+        $this->app->singleton($vendor, function($app) use($vendor){
+            return new $vendor();
         });
     }
 }
