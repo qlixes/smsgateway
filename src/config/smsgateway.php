@@ -12,6 +12,8 @@
 return [
     'vendor' => 'your.vendor',
     'uri' => 'your.uri',
+    'email' => 'your.email',
+    'uri' => 'your.uri',
     'token' => 'your.token',
     'device' => 'your.device'
 ];
