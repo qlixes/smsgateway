@@ -4,7 +4,7 @@ namespace qlixes\SmsGateway\Vendors;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-use qlixes\Interface\SmsGatewayInterface;
+use qlixes\SmsGateway\SmsGatewayInterface;
 
 class SmsGatewayMe extends Client implements SmsGatewayInterface
 {
