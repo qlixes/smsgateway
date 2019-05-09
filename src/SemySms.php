@@ -13,8 +13,6 @@ class SemySms extends Client
 
     private $options = [];
 
-    private $query = [];
-
     function __construct()
     {
         parent::__construct(['base_uri' => config('smeysms.uri')]);
@@ -27,7 +25,7 @@ class SemySms extends Client
 
     function setDevice(int $id): self
     {
-        $this->device = $id ?? config('smsgateway.device');
+        $this->device = $id ?? config('semysms.device');
 
         return $this;
     }
@@ -46,12 +44,16 @@ class SemySms extends Client
         if($params['phone'])
             $query['phone'] = $params['phone'];
 
-        if($params['is_arhive'])
-            $query['is_arhive'] = $params['is_arhive'];
+        if($params['is_archive'])
+            $query['is_arhive'] = $params['is_archive'];
 
-        if()
-            list_id
-            
+        if($params['list_id'] && is_array($params['list_id']))
+            $query['list_id'] = implode(',', $params['list_id']);
+
         $this->options['query'] = $query;
+
+        return $this;
     }
+
+    function s
 }
