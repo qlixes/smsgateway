@@ -1,22 +1,23 @@
 <?php
 
-namespace qlixes\SmsGateway;
+namespace qlixes\Vendors\SmsGateway;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use qlixes\Interface\SmsGatewayInterface;
 
-class SmsGateway extends Client
+class SmsGatewayMe extends Client implements SmsGatewayInterface
 {
     private $device;
-    
+
     private $token;
 
     function __construct()
     {
-        parent::__construct(['base_uri' => config('smsgateway.uri')]);
+        parent::__construct(['base_uri' => config('smsgatewayme.uri')]);
 
-        $this->token = config('smsgateway.token');
-        $this->device = config('smsgateway.device');
+        $this->token = config('smsgatewayme.token');
+        $this->device = config('smsgatewayme.device');
 
         $this->headers['Accept'] = 'application/json';
         $this->headers['Authorization'] = $this->token;
@@ -24,7 +25,7 @@ class SmsGateway extends Client
 
     function setDevice(int $id): self
     {
-        $this->device = $id ?? config('smsgateway.device');
+        $this->device = $id ?? config('smsgatewayme.device');
 
         return $this;
     }

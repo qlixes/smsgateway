@@ -7,10 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class SmsGatewayServiceProvider extends ServiceProvider
 {
-
-    protected $email;
-    protected $password;
-
     public function boot()
     {
         $this->publishes([__DIR__.'/config/smsgateway.php' => config_path('smsgateway.php')]);
@@ -18,9 +14,11 @@ class SmsGatewayServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('smsgateway', function($app){
+        $vendor = config('smsgateway.vendor');
 
-            return new SmsGateway();
+        $this->app->singleton($vendor, function($app){
+
+            return new $vendor();
         });
     }
 }
