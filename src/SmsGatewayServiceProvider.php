@@ -24,7 +24,7 @@ class SmsGatewayServiceProvider extends ServiceProvider
             ));
         }
 
-        $this->app->singleton(strtolower($classPath), function($app) use($classPath){
+        $this->app->singleton($classPath, function($app) use($classPath){
             return new $classPath();
         });
     }
