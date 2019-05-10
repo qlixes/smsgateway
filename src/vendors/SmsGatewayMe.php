@@ -11,6 +11,8 @@ class SmsGatewayMe extends Client
 
     private $token;
 
+    private $options = [];
+
     function __construct()
     {
         parent::__construct(['base_uri' => config('smsgateway.uri')]);
@@ -18,9 +20,11 @@ class SmsGatewayMe extends Client
         $this->token = config('smsgateway.token');
         $this->device = config('smsgateway.device');
 
-        $this->headers['Accept'] = 'application/json';
-        $this->headers['Content-Type'] = 'application/json';
-        $this->headers['Authorization'] = $this->token;
+        $this->options['header'] = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $this->token
+        ];
 
         $this->options['verify'] = false;
     }
@@ -36,7 +40,7 @@ class SmsGatewayMe extends Client
     {
         $id = $id ?? $this->device;
 
-        $response = $this->request('GET', "device/{$id}", ['headers' => $this->headers]);
+        $response = $this->request('GET', "device/{$id}", $this->options);
 
         if($response->getStatusCode() != 200)
             Log::error($response->getReasonPhrase());
@@ -59,15 +63,19 @@ class SmsGatewayMe extends Client
             ];
         };
 
-        $response = $this->request('POST', "message/send", ['headers' => $this->headers, 'json' => $messages]);
+        $this->options['json'] = $messages;
 
-        if($response->getStatusCode() != 200)
-            Log::error($response->getReasonPhrase());
+        return $this->options;
 
-        return [
-            'code' => $response->getStatusCode(),
-            'message' => $response->getReasonPhrase(),
-            'data' => json_decode($response->getBody()->getContents())
-        ];
+        // $response = $this->request('POST', "message/send", $this->options);
+
+        // if($response->getStatusCode() != 200)
+        //     Log::error($response->getReasonPhrase());
+
+        // return [
+        //     'code' => $response->getStatusCode(),
+        //     'message' => $response->getReasonPhrase(),
+        //     'data' => json_decode($response->getBody()->getContents())
+        // ];
     }
 }
