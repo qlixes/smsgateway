@@ -4,9 +4,8 @@ namespace qlixes\SmsGateway\Vendors;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
-use qlixes\SmsGateway\SmsGatewayInterface;
 
-class SmsGatewaySemy extends Client implements SmsGatewayInterface
+class SmsGatewaySemy extends Client
 {
     private $device;
 
@@ -43,12 +42,13 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
 
     function sms(array $destinations, String $text)
     {
-        $messages['data'] = [];
+        $messages = [];
         foreach ($destinations as $destination) {
-            $messages[] = [
+            $messages = [
                 'phone' => $destination,
                 'msg' => $text,
                 'device' => $this->device,
+                'token' => $this->token
             ];
         }
 

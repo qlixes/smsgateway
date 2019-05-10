@@ -4,9 +4,6 @@ namespace qlixes\SmsGateway;
 
 use Illuminate\Support\ServiceProvider;
 
-use qlixes\SmsGateway\Vendors\SmsGatewayMe;
-use qlixes\SmsGateway\Vendors\SmsGatewaySemy;
-
 class SmsGatewayServiceProvider extends ServiceProvider
 {
     var $vendor;
