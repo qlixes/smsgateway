@@ -56,7 +56,7 @@ class SmsGatewaySemy extends Client
 
         $response = $this->request('POST', 'sms.php', $this->options);
 
-        return $response;
+        var_dump($response);
 
         // if($response->getStatusCode() != 200)
         //     Log::error($response->getReasonPhrase());
