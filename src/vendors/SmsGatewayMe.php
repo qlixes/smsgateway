@@ -22,6 +22,8 @@ class SmsGatewayMe extends Client implements SmsGatewayInterface
         $this->headers['Accept'] = 'application/json';
         $this->headers['Content-Type'] = 'application/json';
         $this->headers['Authorization'] = $this->token;
+
+        $this->options['verify'] = false;
     }
 
     function setDevice(int $id): self

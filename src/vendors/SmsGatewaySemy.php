@@ -24,6 +24,7 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
         $this->device = implode(',', $config);
 
         $this->options['header'] = ['Accept' => 'application/json'];
+        $this->options['verify'] = false;
     }
 
     function setParams($params = [])
