@@ -52,20 +52,22 @@ class SmsGatewayMe extends Client
         ];
     }
 
-    function sms(array $destinations, string $text): ?array
+    function sms(array $destinations, string $text)
     {
-        $messages = [];
-        foreach ($destinations as $destination) {
-            $messages[] = [
-                'phone_number' => $destination,
-                'message'      => $text,
-                'device_id'    => $this->device,
-            ];
-        };
+        // $messages = [];
+        // foreach ($destinations as $destination) {
+        //     $messages[] = [
+        //         'phone_number' => $destination,
+        //         'message'      => $text,
+        //         'device_id'    => $this->device,
+        //     ];
+        // };
 
-        $this->options['json'] = $messages;
+        // $this->options['json'] = $messages;
 
-        return $this->options;
+        // var_dump($this->options);
+
+        // die();
 
         // $response = $this->request('POST', "message/send", $this->options);
 
