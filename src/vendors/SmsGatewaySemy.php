@@ -20,8 +20,7 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
 
         $this->token = config('smsgateway.token');
 
-        $config = json_decode(config('smsgateway.device'));
-        $this->device = implode(',', $config);
+        $this->device = config('smsgateway.device');
 
         $this->options['header'] = ['Accept' => 'application/json'];
         $this->options['verify'] = false;
