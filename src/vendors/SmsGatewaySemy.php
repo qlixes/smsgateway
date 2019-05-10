@@ -34,15 +34,6 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
 
         $query['device'] = $this->device;
 
-        if($params['message'])
-            $query['message'] = $params['message'];
-
-        if($params['phone'])
-            $query['phone'] = $params['phone'];
-
-        if($params['is_archive'])
-            $query['is_arhive'] = $params['is_archive'];
-
         if($params['list_id'] && is_array($params['list_id']))
             $query['list_id'] = implode(',', $params['list_id']);
 
@@ -56,13 +47,16 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
         $messages = [];
         foreach ($destinations as $destination) {
             $messages[] = [
-                'phone_number' => $destination,
-                'message'      => $text,
-                'device_id'    => $this->device,
+                'phoner' => $destination,
+                'msg' => $text,
+                'device' => $this->device,
+                'token' => $this->token,
             ];
         }
 
-        $response = $this->request('GET', 'sms.php', $this->options);
+        $this->options['json'] = $messages;
+
+        $response = $this->request('POST', 'sms.php', $this->options);
 
         if($response->getStatusCode() != 200)
             Log::error($response->getReasonPhrase());
