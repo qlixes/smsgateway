@@ -14,18 +14,19 @@ class SmsGatewayMe extends Client implements SmsGatewayInterface
 
     function __construct()
     {
-        parent::__construct(['base_uri' => config('smsgatewayme.uri')]);
+        parent::__construct(['base_uri' => config('smsgateway.uri')]);
 
-        $this->token = config('smsgatewayme.token');
-        $this->device = config('smsgatewayme.device');
+        $this->token = config('smsgateway.token');
+        $this->device = config('smsgateway.device');
 
         $this->headers['Accept'] = 'application/json';
+        $this->headers['Content-Type'] = 'application/json';
         $this->headers['Authorization'] = $this->token;
     }
 
     function setDevice(int $id): self
     {
-        $this->device = $id ?? config('smsgatewayme.device');
+        $this->device = $id ?? config('smsgateway.device');
 
         return $this;
     }
@@ -55,7 +56,7 @@ class SmsGatewayMe extends Client implements SmsGatewayInterface
                 'message'      => $text,
                 'device_id'    => $this->device,
             ];
-        }
+        };
 
         $response = $this->request('POST', "message/send", ['headers' => $this->headers, 'json' => $messages]);
 

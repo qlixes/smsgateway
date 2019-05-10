@@ -16,11 +16,11 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
 
     function __construct()
     {
-        parent::__construct(['base_uri' => config('smsgatewaysemy.uri')]);
+        parent::__construct(['base_uri' => config('smsgateway.uri')]);
 
-        $this->token = config('smsgatewaysemy.token');
+        $this->token = config('smsgateway.token');
 
-        $config = json_decode(config('smsgatewaysemy.device'));
+        $config = json_decode(config('smsgateway.device'));
         $this->device = implode(',', $config);
 
         $this->options['header'] = ['Accept' => 'application/json'];
