@@ -54,10 +54,9 @@ class SmsGatewaySemy extends Client
 
         $this->options['json'] = $messages;
 
-        return $this->options;
-        die();
-
         $response = $this->request('POST', 'sms.php', $this->options);
+
+        return $response; die();
 
         if($response->getStatusCode() != 200)
             Log::error($response->getReasonPhrase());
