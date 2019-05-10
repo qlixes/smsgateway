@@ -42,29 +42,29 @@ class SmsGatewaySemy extends Client
 
     function sms(array $destinations, String $text)
     {
-        $messages = [];
+        $messages = []; $result = [];
         foreach ($destinations as $destination) {
             $messages = [
                 'phone' => $destination,
                 'msg' => $text,
+                'token' => $this->token,
                 'device' => $this->device,
-                'token' => $this->token
+            ];
+
+            $this->options['form_params'] = $messages;
+
+            $response = $this->request('POST', 'sms.php', $this->options);
+
+            if($response->getStatusCode() != 200)
+                Log::error($response->getReasonPhrase());
+
+            $result[] = [
+                'code' => $response->getStatusCode(),
+                'message' => $response->getReasonPhrase(),
+                'data' => json_decode($response->getBody()->getContents())
             ];
         }
 
-        $this->options['json'] = $messages;
-
-        $response = $this->request('POST', 'sms.php', $this->options);
-
-        var_dump($response->getBody()->getContent());
-
-        // if($response->getStatusCode() != 200)
-        //     Log::error($response->getReasonPhrase());
-        //
-        // return [
-        //     'code' => $response->getStatusCode(),
-        //     'message' => $response->getReasonPhrase(),
-        //     'data' => json_decode($response->getBody()->getContents())
-        // ];
+        return $result;
     }
 }
