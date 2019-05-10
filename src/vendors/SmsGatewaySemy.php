@@ -44,13 +44,12 @@ class SmsGatewaySemy extends Client implements SmsGatewayInterface
 
     function sms(array $destination, String $text)
     {
-        $messages = [];
+        $messages['data'] = [];
         foreach ($destinations as $destination) {
             $messages[] = [
                 'phoner' => $destination,
                 'msg' => $text,
                 'device' => $this->device,
-                'token' => $this->token,
             ];
         }
 
